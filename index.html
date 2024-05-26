@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Печенкин Владислав Витальевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .company-name {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px 20px;
+            margin-left: 50px;
+            box-sizing: border-box;
+            z-index: 10;
+            text-align: left;
+            font-size: 44pt;
+            color: white;
+        }
+
+        .company-desc {
+            position: fixed;
+            top: 300px;
+            left: 0;
+            padding: 10px 20px;
+            margin-left: 50px;
+            box-sizing: border-box;
+            z-index: 10;
+            text-align: left;
+            font-size: 44pt;
+            color: white;
+            line-height: 5px;
+            font-weight: bold;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 300px;
+            background-color: rgba(209, 248, 255, 0.7); /* Белый фон с прозрачностью 30% */
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для разделения */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Распределяем пространство между элементами */
+        }
+
+        .logo {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 20px auto;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 0 10px 0; /* Отступ между пунктами меню */
+        }
+        nav ul li a {
+            color: #333; /* Темный цвет текста */
+            text-decoration: none;
+            font-size: 18pt;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s; /* Добавляем анимацию при наведении */
+            text-align: right;
+        }
+        nav ul li a:hover {
+            background-color: #60e7ffc0;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 22pt;
+            text-align: center;
+            
+        }
+
+        .background-image-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Высота экрана */
+            overflow: hidden;
+        }
+
+        .background-image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Покрывает весь экран, сохраняя пропорции */
+            transform: translate(-50%, -50%);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: rgba(0, 0, 0, 0.5); Полупрозрачный черный фон для затемнения */
+        }
+
+        .video-overlay video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Покрывает весь экран, сохраняя пропорции */
+            transform: translate(-50%, -50%);
+            filter: brightness(1) saturate(1);
+            opacity: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="company-name">
+        <h1>IBEC</h1>
+        
+    </div>
+    <div class="company-desc">
+        <p>Международный Банк</p>
+        <p>экономического</p>
+        <p>cотрудничества</p>
+    </div>
+    <header>
+        <img src="logo.png" alt="Логотип" class="logo">
+        <nav>
+            <ul>
+                <li><a href="about.html">О КОМПАНИИ</a></li>
+                <li><a href="news.html">НОВОСТИ</a></li>
+                <li><a href="exchrate.html">КУРС ВАЛЮТ</a></li>
+                <li><a href="contact.html">КОНТАКТНЫЕ ДАННЫЕ</a></li>
+                <li><a href="video.html">ВИДЕО</a></li>
+            </ul>
+        </nav>
+        <h1>Главная</h1>
+    </header>
+
+    <main>
+        <div class="background-image-container">
+            <img src="подложка2.jpg" alt="Фоновое изображение">
+        <div class="video-overlay">
+            <video src="https://www.ibec.int/frontend/build/images/intro.mp4" autoplay loop muted></video>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
