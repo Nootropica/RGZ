@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Печенкин Владислав Витальевич</title>
+    <link rel="shortcut icon" href="https://ibec.int/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rubInput = document.getElementById("rubles");
+            const czkInput = document.getElementById("czk");
+            const convertButton = document.getElementById("convert");
+            const exchangeRateElement = document.getElementById("rate");
+            let exchangeRate;
+
+            // Функция для получения актуального курса валют
+            async function getExchangeRate() {
+                try {
+                    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+                    if (!response.ok) {
+                        throw new Error('Ошибка при получении курса валют');
+                    }
+                    const data = await response.json();
+                    exchangeRate = data.Valute.CZK.Value; // Курс CZK к RUB
+                    reverseRate = 1 / exchangeRate // обратный курс RUB К CZK
+                    exchangeRateElement.textContent = `1 рубль = ${reverseRate.toFixed(5) * 10} чешских крон`;
+                } catch (error) {
+                    console.error('Ошибка при получении курса валют:', error);
+                    alert('Не удалось получить актуальный курс валют. Попробуйте позже.');
+                }
+            }
+
+            // Выполняем получение курса при загрузке страницы
+            getExchangeRate();
+
+            // Функция конвертации валют
+            function convertCurrency() {
+                const rubValue = parseFloat(rubInput.value);
+                const czkValue = parseFloat(czkInput.value);
+
+                if (!isNaN(rubValue) && rubValue >= 0) {
+                    czkInput.value = (rubValue / exchangeRate * 10).toFixed(3);
+                } else if (!isNaN(czkValue) && czkValue >= 0) {
+                    rubInput.value = (czkValue * exchangeRate / 10).toFixed(3);
+                } else {
+                    alert('Введите корректное значение');
+                }
+            }
+
+            // Обработчик нажатия на кнопку конвертации
+            convertButton.addEventListener("click", convertCurrency);
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 300px;
+            background-color: rgba(209, 248, 255, 0.877);
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 22pt;
+        }
+
+        .logo {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 20px auto;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 0 10px 0;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18pt;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            text-align: right;
+        }
+
+        nav ul li a:hover {
+            background-color: #60e7ffc0;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg_exchrate.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .converter {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            position: relative;
+        }
+
+        .converter input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .converter button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+
+        .exchange-rate {
+            max-width: 300px;
+            margin: 50px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            position: relative;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="main.html">
+            <img src="logo.png" alt="Логотип" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="main.html">ГЛАВНАЯ</a></li>
+                <li><a href="news.html">НОВОСТИ</a></li>
+                <li><a href="exchrate.html">КУРС ВАЛЮТ</a></li>
+                <li><a href="contact.html">КОНТАКТЫ</a></li>
+                <li><a href="video.html">ВИДЕО</a></li>
+            </ul>
+        </nav>
+        <h1>О компании</h1>
+    </header>
+    <main>
+        <div class="background"></div>
+        <div class="exchange-rate" id="exchangeRate">
+            <h2>Текущий курс RUB / CZK</h2>
+            <p id="rate">Загрузка...</p>
+        </div>
+        <div class="converter">
+            <h2>Конвертер валют</h2>
+            <div>
+                <label for="rubles">Рубли:</label>
+                <input type="number" id="rubles" placeholder="Введите сумму в рублях"/>
+            </div>
+            <div>
+                <label for="czk">Чешская крона:</label>
+                <input type="number" id="czk" placeholder="Введите сумму в кронах"/>
+            </div>
+            <button id="convert">Конвертировать</button>
+        </div>
+    </main>
+    
+</body>
+</html>

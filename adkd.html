@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании IBEC</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 200px;
+            background-color: #f0f0f0;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .content {
+            margin-right: 200px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .logo {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Содержимое меню -->
+        <nav>
+            <ul>
+                <li><a href="#about">О компании</a></li>
+                <li><a href="#services">Направления деятельности</a></li>
+                <li><a href="#history">История</a></li>
+                <!-- Добавьте другие пункты меню -->
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <!-- Содержимое страницы -->
+        <h1 id="about">О компании IBEC</h1>
+        <img src="path_to_your_logo.png" alt="Логотип компании IBEC" class="logo">
+
+        <h2 id="services">Направления деятельности</h2>
+        <p class="bold">Описание направлений деятельности компании IBEC.</p>
+
+        <h2 id="history">История</h2>
+        <p class="italic">Краткая история компании IBEC.</p>
+
+        <!-- Добавьте еще экраны, если необходимо -->
+    </div>
+</body>
+</html>
